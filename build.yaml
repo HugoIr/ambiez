@@ -1,0 +1,8 @@
+targets:
+  $default:
+    builders:
+      # Typically the builder key is just the package name, run `pub run build_runner doctor` to check your config.
+      ambiez:
+        generate_for:
+          # Example glob for only the Dart files under `lib/models`
+          - core/api/*.dart
