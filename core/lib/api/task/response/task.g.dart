@@ -7,11 +7,11 @@ part of 'task.dart';
 // **************************************************************************
 
 TaskResponse _$TaskResponseFromJson(Map<String, dynamic> json) => TaskResponse(
-      json['id'] as int,
-      json['title'] as String,
-      json['completed'] as bool,
-      json['hour'] as int,
-      json['minute'] as int,
+      id: json['id'] as int,
+      title: json['title'] as String,
+      completed: json['completed'] as bool,
+      hour: json['hour'] as int,
+      minute: json['minute'] as int,
     );
 
 Map<String, dynamic> _$TaskResponseToJson(TaskResponse instance) =>

@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 @immutable
 class TaskData {
   final int id;
-  final String title;
-  final bool completed;
-  final int hour;
-  final int minute;
+  String title;
+  bool completed;
+  int hour;
+  int minute;
 
-  const TaskData({
+  TaskData({
     required this.id,
     required this.title,
     required this.completed,

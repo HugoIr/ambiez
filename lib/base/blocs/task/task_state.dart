@@ -11,6 +11,6 @@ class TaskAllLoaded extends TaskState {
 }
 
 class TaskError extends TaskState {
-  String message;
-  TaskError({required this.message});
+  final Failure failure;
+  TaskError({required this.failure});
 }

@@ -14,6 +14,14 @@ abstract class TaskApi {
   @GET('/tasks')
   Future<List<TaskResponse>> getTaskAll();
 
+  // Get all todo tasks
+  @GET('/tasks/todo')
+  Future<List<TaskResponse>> getTodoTaskAll();
+
+  // Get all completed tasks
+  @GET('/tasks/completed')
+  Future<List<TaskResponse>> getCompletedTaskAll();
+
   // Get task by ID
   @GET('/tasks/{task_id}')
   Future<TaskResponse> getTaskById(
@@ -35,7 +43,7 @@ abstract class TaskApi {
 
   // Toggle task
   @PATCH('/tasks/toggle/{task_id}')
-  Future<TaskResponse> toggleTask(
+  Future<void> toggleTask(
     @Path('task_id') int taskId,
   );
 

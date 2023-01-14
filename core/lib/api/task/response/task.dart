@@ -10,13 +10,13 @@ class TaskResponse {
   final int hour;
   final int minute;
 
-  TaskResponse(
-    this.id,
-    this.title,
-    this.completed,
-    this.hour,
-    this.minute,
-  );
+  TaskResponse({
+    required this.id,
+    required this.title,
+    required this.completed,
+    required this.hour,
+    required this.minute,
+  });
 
   factory TaskResponse.fromJson(Map<String, dynamic> json) =>
       _$TaskResponseFromJson(json);

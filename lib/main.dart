@@ -5,8 +5,10 @@ import 'package:ambiez/design/foundations/spacing.dart';
 import 'package:ambiez/design/foundations/themes/ambiez_themes.dart';
 import 'package:ambiez/base/components/molecules/task.dart';
 import 'package:ambiez/di/di.dart';
+import 'package:core/api/task/request/task.dart';
 import 'package:core/config/config.dart';
 import 'package:core/config/flavor.dart';
+import 'package:core/feature/task/impl/get_all_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -34,17 +36,17 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ligthThemeAmbiez,
       debugShowCheckedModeBanner: false,
-      home: const TaskPage(),
+      home: TaskPage(),
     );
   }
 }
 
 class TaskPage extends StatelessWidget {
-  const TaskPage({Key? key}) : super(key: key);
+  TaskPage({Key? key}) : super(key: key);
+  TextEditingController titleTaskEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    List<int> lst = [1, 2, 3];
     return ScreenUtilInit(
       designSize: const Size(390, 844),
       minTextAdapt: true,
@@ -55,7 +57,7 @@ class TaskPage extends StatelessWidget {
             BlocProvider(
               create: (context) => getIt<TaskBloc>()
                 ..add(
-                  GetTaskAllEvent(),
+                  GetTaskAllEvent(getTaskAllType: GetTaskAllType.todo),
                 ),
             ),
           ],
@@ -141,6 +143,20 @@ class TaskPage extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: TextFormField(
+                        controller: titleTaskEditingController,
+                        keyboardType: TextInputType.text,
+                        textInputAction: TextInputAction.done,
+                        onFieldSubmitted: (newValue) {
+                          print("NEWVALUE $newValue");
+                          getIt<TaskBloc>().add(
+                            AddTaskAllEvent(
+                              taskRequest: TaskRequest(
+                                title: newValue,
+                              ),
+                            ),
+                          );
+                          titleTaskEditingController.clear();
+                        },
                         decoration: InputDecoration(
                           fillColor: Colors.white70,
                           filled: true,
@@ -174,24 +190,6 @@ class TaskPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    // ListView.separated(
-                    //     padding: EdgeInsets.zero,
-                    //     shrinkWrap: true,
-                    //     physics: NeverScrollableScrollPhysics(),
-                    //     itemCount: lst.length,
-                    //     separatorBuilder: (context, index) {
-                    //       return SizedBox(
-                    //         height: 10,
-                    //       );
-                    //     },
-                    //     itemBuilder: (context, index) {
-                    //       // print("INDEX $index");
-                    //       return Container(
-                    //         width: 300,
-                    //         height: 100,
-                    //         decoration: BoxDecoration(color: Colors.amber),
-                    //       );
-                    //     }),
                     Padding(
                       padding: const EdgeInsets.symmetric(
                         horizontal:
@@ -213,15 +211,10 @@ class TaskPage extends StatelessWidget {
                                   return SizedBox();
                                 },
                                 itemBuilder: (context, index) {
-                                  // print("INDEX $index");
                                   return Task(taskData: state.tasksData[index]);
-                                  // return Container(
-                                  //   width: 300,
-                                  //   height: 100,
-                                  //   decoration:
-                                  //       BoxDecoration(color: Colors.amber),
-                                  // );
                                 });
+                          } else if (state is TaskError) {
+                            return Text(state.failure.message);
                           } else {
                             return const CircularProgressIndicator();
                           }

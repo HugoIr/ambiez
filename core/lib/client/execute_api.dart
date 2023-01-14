@@ -11,9 +11,9 @@ Future<Either<Failure, T>> executeApi<T>(Future<T> t) async {
     final futureCall = await t;
     return Right(futureCall);
   } on DioError catch (e) {
-    print("DioError: " + e.error.toString());
+    print("DioError: ${e.error}");
     if (e.error is SocketException) {
-      return Left(NetworkFailure());
+      return Left(NetworkFailure(message: "Please check your connection."));
     } else if (e.error is TimeoutException) {
       return Left(TimeoutFailure());
     }

@@ -1,7 +1,9 @@
+import 'package:ambiez/base/blocs/task/task_bloc.dart';
 import 'package:ambiez/base/components/atoms/spacer.dart';
 import 'package:ambiez/base/cubits/toggle/toggle_cubit.dart';
 import 'package:ambiez/design/foundations/colors.dart';
 import 'package:ambiez/design/foundations/spacing.dart';
+import 'package:core/di/core_di.dart';
 import 'package:core/feature/task/domain/task_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,7 +35,12 @@ class Task extends StatelessWidget {
                       colorConfig: MSHColorConfig.fromCheckedUncheckedDisabled(
                           checkedColor: AmbiezColorsFoundation.primaryColor),
                       style: MSHCheckboxStyle.fillScaleCheck,
-                      onChanged: (_) => context.read<ToggleCubit>().toogle(),
+                      onChanged: (_) {
+                        context.read<ToggleCubit>().toogle();
+                        getIt<TaskBloc>().add(
+                          ToggleTaskEvent(taskId: taskData.id),
+                        );
+                      },
                     );
                   },
                 ),
@@ -59,8 +66,8 @@ class Task extends StatelessWidget {
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 50.0),
+          const Padding(
+            padding: EdgeInsets.only(left: 50.0),
             child: Divider(
               thickness: 1.2,
             ),
