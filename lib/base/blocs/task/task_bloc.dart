@@ -52,9 +52,8 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
       (r) {
         final state = this.state;
         if (state is TaskAllLoaded) {
-          List<TaskData> newTaskData = state.tasksData;
-          newTaskData.add(r);
-          emit(TaskAllLoaded(tasksData: newTaskData));
+          state.tasksData.insert(0, r);
+          emit(TaskAllLoaded(tasksData: state.tasksData));
         }
       },
     );
@@ -71,13 +70,12 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
       (r) {
         final state = this.state;
         if (state is TaskAllLoaded) {
-          List<TaskData> newTaskData = state.tasksData;
-          for (TaskData taskData in newTaskData) {
+          for (TaskData taskData in state.tasksData) {
             if (taskData.id == event.taskId) {
               taskData.completed = !taskData.completed;
             }
           }
-          emit(TaskAllLoaded(tasksData: newTaskData));
+          emit(TaskAllLoaded(tasksData: state.tasksData));
         }
       },
     );

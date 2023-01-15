@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 final ligthThemeAmbiez = ThemeData(
     primaryColor: AmbiezColorsFoundation.primaryColor,
     primarySwatch: AmbiezColorsFoundation.primaryColorMat,
-    backgroundColor: AmbiezColorsFoundation.bgGray,
+    backgroundColor: AmbiezColorsFoundation.bgLightGray,
     fontFamily: AmbiezTypographyFoundation.familyBody,
     textTheme: const TextTheme(
       headline1: TextStyle(

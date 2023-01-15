@@ -1,9 +1,11 @@
 import 'package:bloc/bloc.dart';
+import 'package:injectable/injectable.dart';
 
+@singleton
 class ToggleCubit extends Cubit<bool> {
-  ToggleCubit([bool initialValue = false]) : super(initialValue);
+  ToggleCubit() : super(false);
 
-  void toogle() {
+  void toggle() {
     emit(!state);
   }
 }

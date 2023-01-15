@@ -23,7 +23,7 @@ class AmbiezColors {
   static const Color bGBlack = Color(0xFF10143c);
   static const Color bGArena = Color.fromARGB(255, 169, 163, 155);
   static const Color bgDarkGray = Color.fromARGB(255, 212, 210, 210);
-  static const Color bgLigthGray = Color.fromARGB(255, 243, 240, 240);
+  static const Color bgLightGray = Color.fromARGB(255, 238, 238, 238);
   static const Color bgWhite = Color(0xFFFFFFFF);
 
   static const brandPrimary = Color(0xFF0B113B);

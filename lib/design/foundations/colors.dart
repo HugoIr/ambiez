@@ -13,7 +13,7 @@ import 'package:flutter/material.dart';
 class AmbiezColorsFoundation {
   AmbiezColorsFoundation._();
 
-  static const Color bgGray = AmbiezColors.bgLigthGray;
+  static const Color bgLightGray = AmbiezColors.bgLightGray;
   static const Color bgDark = AmbiezColors.scale06;
   static const Color bgBlack = AmbiezColors.bGBlack;
   static const Color colorButtonPrimary = AmbiezColors.brandPrimary;

@@ -12,6 +12,7 @@ class AmbiezSpacing {
   static const double spaceXS = 6;
   static const double spaceSM = 8;
   static const double spaceSL = 10;
+  static const double space12 = 12;
   static const double spaceNormal = 16;
   static const double spaceMD = 20;
   static const double spaceLG = 24;

@@ -15,7 +15,8 @@ class AmbiezTypographyFoundation {
   static const double fontSizeH4 = AmbiezTypography.sizeMD;
   static const double fontSizeH5 = AmbiezTypography.sizeSL;
   static const double fontSizeH6 = AmbiezTypography.sizeSM;
-  static const double fontSizeBodyText = AmbiezTypography.sizeXS;
+  static const double fontSizeBodyText = AmbiezTypography.sizeS;
+  static const double fontSizeLarge = AmbiezTypography.sizeSM;
   static const double fontSizeLabel = AmbiezTypography.sizeXS;
   static const double fontSizeLink = AmbiezTypography.sizeXS;
   static const double fontSizeSmall = AmbiezTypography.sizeXXS;
